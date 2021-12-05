@@ -32,4 +32,18 @@ describe('pruebas en el componente', () => {
         expect(setCategories).not.toHaveBeenCalled();
     })
 
+    test('debe de llamar el setCategoriesy limpiar la caja de texto', () => {
+        const input = wrapper.find('input');
+        const value = 'Hola Edgard';
+
+        input.simulate('change', { target: { value } });
+        wrapper.find('form').simulate('submit', { preventDefault(){} });
+
+        expect(setCategories).toHaveBeenCalled();
+        expect(setCategories).toHaveBeenCalledTimes(1);
+        expect(setCategories).toHaveBeenCalledWith(expect.any(Function));
+
+        expect(wrapper.find('input').prop('value')).toBe('');
+    })
+    
 })
